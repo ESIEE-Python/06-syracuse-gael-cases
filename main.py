@@ -19,7 +19,6 @@ def syr_plot(lsyr):
     fig.add_trace(t)
     fig.show()
     # fig.write_html('fig.html', include_plotlyjs='cdn')
-    return None
 #######################
 
 def syracuse_l(n):
@@ -31,9 +30,14 @@ def syracuse_l(n):
     Returns:
         list: la suite de Syracuse de source n
     """
+    l = [n]
+    while n != 1 :
+        if n%2 == 0 :
+            n = n//2
+        else :
+            n = n*3 +1
+        l.append(n)
 
-    # votre code ici 
-    l = [ ]
     return l
 
 def temps_de_vol(l):
@@ -45,11 +49,7 @@ def temps_de_vol(l):
     Returns:
         int: le temps de vol
     """
-    
-    # votre code ici
-
-    n = 0
-    return n
+    return len(l)
 
 def temps_de_vol_en_altitude(l):
     """Retourne le temps de vol en altitude d'une suite de Syracuse
@@ -62,8 +62,13 @@ def temps_de_vol_en_altitude(l):
     """
 
     # votre code ici
-
+    u0 = l[0]
     n = 0
+    for i in l :
+        if u0 < i+1 :
+            n = n+1
+        else :
+            break
     return n
 
 
@@ -76,18 +81,24 @@ def altitude_maximale(l):
     Returns:
         int: l'altitude maximale
     """
-    
+
     # votre code ici
-    
-    n = 0
-    return n
+    altm = l[0]
+
+    for i in l :
+        altm = max(altm, i)
+    return altm
 
 
 #### Fonction principale
 
 
 def main():
-
+    """
+    Fonction principale pour exécuter le programme Syracuse.
+    Appelle les fonctions secondaires pour générer la suite de Syracuse,
+    tracer le graphique, et calculer des statistiques.
+    """
     # vos appels à la fonction secondaire ici
     lsyr = syracuse_l(15)
     syr_plot(lsyr)
